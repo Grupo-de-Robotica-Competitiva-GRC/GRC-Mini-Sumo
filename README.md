@@ -1,1 +1,1 @@
-# GR-Mini-Sumo
+# GRC-Mini-Sumo
