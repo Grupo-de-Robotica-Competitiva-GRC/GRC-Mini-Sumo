@@ -90,20 +90,25 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_PWM_start(&htim1, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  uint8_t dc = 0;
+  uint16_t dc1 = 0;
+  uint16_t dc2 = 0;
   while (1)
   {
-	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, dc);
+	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dc1);
+	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, dc2);
 
 	  HAL_Delay(300);
-	  dc += 3;
-	  if (dc == 255) dc = 0;
+	  dc1 += 30;
+	  dc2 += 30;
+	  if (dc1 == 1024) dc1 = 0;
+	  if (dc2 == 1024) dc2 = 0;
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
