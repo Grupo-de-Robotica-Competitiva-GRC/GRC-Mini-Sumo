@@ -46,6 +46,11 @@ I2C_HandleTypeDef hi2c1;
 VL53L0X_RangingMeasurementData_t RangingData;
 VL53L0X_Dev_t  vl53l0x_c;
 VL53L0X_DEV Dev = &vl53l0x_c;
+uint8_t address;
+VL53L0X_Error status;
+HAL_StatusTypeDef ret;
+uint8_t test = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -63,6 +68,7 @@ void LidarInit() {
 	uint8_t isApertureSpads;
 	uint8_t VhvSettings;
 	uint8_t PhaseCal;
+
 	VL53L0X_WaitDeviceBooted( Dev );
 	VL53L0X_DataInit( Dev );
 	VL53L0X_StaticInit( Dev );
@@ -94,7 +100,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+	HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -119,15 +125,34 @@ int main(void)
 	HAL_GPIO_WritePin(Lidar_xShutdown_GPIO_Port, Lidar_xShutdown_Pin, GPIO_PIN_SET);
 	HAL_Delay(20);
 	LidarInit();
-	VL53L0X_SetDeviceAddress(Dev, 0x62);
+
+	ret = HAL_I2C_Mem_Read(
+	    &hi2c1,
+	    0x52,
+	    0xC0,
+	    I2C_MEMADD_SIZE_8BIT,
+	    &test,
+	    1,
+	    100
+	);
+
+
+	//VL53L0X_SetDeviceAddress(Dev, 0x31);
+
+	for(uint8_t addr = 1; addr < 128; addr++)
+	{
+	    if(HAL_I2C_IsDeviceReady(&hi2c1, addr << 1, 1, 10) == HAL_OK)
+	    {
+	        address = addr;
+	    }
+	}
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  Dev->I2cDevAddr = 0x62;
-	  VL53L0X_PerformSingleRangingMeasurement(Dev, &RangingData);
+	  status = VL53L0X_PerformSingleRangingMeasurement(Dev, &RangingData);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
