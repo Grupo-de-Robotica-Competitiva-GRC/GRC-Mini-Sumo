@@ -60,8 +60,8 @@ all: main-build
 main-build: pwmtetes.elf secondary-outputs
 
 # Tool invocations
-pwmtetes.elf pwmtetes.map: $(OBJS) $(USER_OBJS) /home/laio/STM32CubeIDE/workspace_2.1.1/pwmtetes/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "pwmtetes.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/laio/STM32CubeIDE/workspace_2.1.1/pwmtetes/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="pwmtetes.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+pwmtetes.elf pwmtetes.map: $(OBJS) $(USER_OBJS) /home/laio/Documents/GRC/GRC-Mini-Sumo/fw/Testes/Teste_PWM/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "pwmtetes.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/laio/Documents/GRC/GRC-Mini-Sumo/fw/Testes/Teste_PWM/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="pwmtetes.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

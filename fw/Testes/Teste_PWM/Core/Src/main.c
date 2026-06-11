@@ -90,9 +90,9 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_PWM_start(&htim2, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
-  HAL_TIM_PWM_start(&htim2, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
   /* USER CODE END 2 */
 
@@ -111,8 +111,8 @@ int main(void)
 	  HAL_Delay(300);
 	  dc1 += 30;
 	  dc2 += 30;
-	  if (dc1 == 1024) dc1 = 0;
-	  if (dc2 == 1024) dc2 = 0;
+	  if (dc1 >= 1024) dc1 = 0;
+	  if (dc2 >= 1024) dc2 = 0;
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
