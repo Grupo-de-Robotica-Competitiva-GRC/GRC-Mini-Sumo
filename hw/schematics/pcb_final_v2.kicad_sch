@@ -6243,6 +6243,12 @@
 		(uuid "11ed7978-5082-48a7-9331-047ad011887d")
 	)
 	(junction
+		(at 69.85 50.8)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "283b2999-716a-469b-bd07-bfbe6e0a89d3")
+	)
+	(junction
 		(at 43.18 30.48)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6253,12 +6259,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "585a3b45-0c6f-43e7-ac3b-ae2b3778b5f2")
-	)
-	(junction
-		(at 69.85 48.26)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5af9674c-7209-4551-806f-dcdcc0cd81a7")
 	)
 	(junction
 		(at 133.35 95.25)
@@ -6309,12 +6309,6 @@
 		(uuid "babf577e-b816-417e-ba43-b7b063c1bf14")
 	)
 	(junction
-		(at 52.07 118.11)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "bf26f9a9-50dd-465e-90a6-9a5cdf3ff39f")
-	)
-	(junction
 		(at 212.09 95.25)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6343,12 +6337,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d4e0e71f-4002-413a-96f7-7dbcf2c8a10b")
-	)
-	(junction
-		(at 69.85 50.8)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "dfd6c98c-5a51-44b5-a163-397d76425978")
 	)
 	(junction
 		(at 49.53 96.52)
@@ -6666,6 +6654,36 @@
 	)
 	(wire
 		(pts
+			(xy 69.85 50.8) (xy 71.12 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "18b2f668-92bc-4f5d-b0f3-6deddcf71121")
+	)
+	(wire
+		(pts
+			(xy 69.85 50.8) (xy 69.85 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "19905e56-3c0f-4ef6-a832-7df1fb5f29ab")
+	)
+	(wire
+		(pts
+			(xy 68.58 50.8) (xy 69.85 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1c060ea0-f393-49f1-9ab0-822625c67f7b")
+	)
+	(wire
+		(pts
 			(xy 40.64 22.86) (xy 40.64 27.94)
 		)
 		(stroke
@@ -6786,16 +6804,6 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 50.8) (xy 69.85 50.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "69a19832-904f-440c-8f33-02505dc366f4")
-	)
-	(wire
-		(pts
 			(xy 43.18 40.64) (xy 40.64 40.64)
 		)
 		(stroke
@@ -6836,7 +6844,7 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 48.26) (xy 69.85 48.26)
+			(xy 59.69 48.26) (xy 71.12 48.26)
 		)
 		(stroke
 			(width 0)
@@ -6956,16 +6964,6 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 50.8) (xy 69.85 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "afa47545-7936-413f-b3d2-9d20723bfd9b")
-	)
-	(wire
-		(pts
 			(xy 179.07 82.55) (xy 179.07 95.25)
 		)
 		(stroke
@@ -7003,16 +7001,6 @@
 			(type default)
 		)
 		(uuid "b6d511e3-6204-4800-a239-b412139fa1ec")
-	)
-	(wire
-		(pts
-			(xy 69.85 48.26) (xy 69.85 50.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b9c13285-4dc3-49a5-bb5b-0abe4a3c1508")
 	)
 	(wire
 		(pts
@@ -7632,7 +7620,7 @@
 	)
 	(global_label "GNDPWR"
 		(shape input)
-		(at 69.85 52.07 270)
+		(at 69.85 53.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7642,7 +7630,7 @@
 		)
 		(uuid "5792a01c-0b8f-400b-973e-67ea4380a88a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 69.85 62.9171 90)
+			(at 69.85 64.1871 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8182,30 +8170,6 @@
 			)
 		)
 	)
-	(global_label "+7.4V"
-		(shape input)
-		(at 52.07 118.11 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "b8d34308-0440-4fec-8ff7-0e300336c35d")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 43.4 118.11 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
 	(global_label "GNDPWR"
 		(shape input)
 		(at 52.07 124.46 270)
@@ -8315,30 +8279,6 @@
 		(uuid "c14ff7d2-093f-4b95-b8be-ea9c6caa4e77")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 209.55 103.7553 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
-	(global_label "+7.4V"
-		(shape input)
-		(at 52.07 114.3 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "c3abd865-c0f9-40e8-bb0e-2f616a69a03a")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 60.74 114.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8685,7 +8625,7 @@
 			(uuid "15152668-20c0-4067-967a-00352b6adb66")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#PWR020")
 					(unit 1)
@@ -8766,7 +8706,7 @@
 			(uuid "7b80d6d7-2b80-453f-9e89-b59bba0ec27b")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "C3")
 					(unit 1)
@@ -8844,7 +8784,7 @@
 			(uuid "85874539-8c07-41b5-9e4a-95940e24df98")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#PWR023")
 					(unit 1)
@@ -8923,7 +8863,7 @@
 			(uuid "dde23036-9d2c-43e6-bd0d-c2767b349e5b")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#PWR026")
 					(unit 1)
@@ -9027,7 +8967,7 @@
 			(uuid "d63ad3c6-e02d-4564-bb19-16f7b2f6855e")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "D1")
 					(unit 1)
@@ -9119,7 +9059,7 @@
 			(uuid "31d2134c-18ad-4aa3-9124-1b5142e32c03")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "tof-connector_1")
 					(unit 1)
@@ -9202,7 +9142,7 @@
 			(uuid "a997675c-2d72-490a-88f8-eb7ee5b1e8e0")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "J11")
 					(unit 1)
@@ -9336,7 +9276,7 @@
 			(uuid "8b765deb-0a40-473c-9416-ed77da70f48c")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "J2")
 					(unit 1)
@@ -9414,87 +9354,9 @@
 			(uuid "a474a503-e9a2-4081-a232-47bd4790885a")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#PWR012")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 52.07 118.11 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "30ffcf80-268a-437e-89d4-5568eca4471c")
-		(property "Reference" "#PWR08"
-			(at 55.88 118.11 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+7.4V"
-			(at 50.8 115.57 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 52.07 118.11 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 52.07 118.11 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 52.07 118.11 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "2c859fc8-8c2e-4614-bb97-e3047e86bda5")
-		)
-		(instances
-			(project "pcb_final"
-				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
-					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -9581,7 +9443,7 @@
 			(uuid "6ea7bfbb-9bd0-4677-a350-6187495208f8")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "signal_motors1")
 					(unit 1)
@@ -9666,7 +9528,7 @@
 			(uuid "49a936de-0726-49d4-a861-1b4d3b770e27")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "U2")
 					(unit 1)
@@ -9751,7 +9613,7 @@
 			(uuid "cc014c55-f33d-45f8-a140-20b1366996e9")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "SW2")
 					(unit 1)
@@ -9761,7 +9623,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Screw_Terminal_01x02")
-		(at 74.93 48.26 0)
+		(at 76.2 48.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9771,7 +9633,7 @@
 		(dnp no)
 		(uuid "5c378431-bb20-496b-9ba7-ddefcede847e")
 		(property "Reference" "power_drive1"
-			(at 70.866 53.594 0)
+			(at 72.136 53.594 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9782,7 +9644,7 @@
 			)
 		)
 		(property "Value" "KRE borne"
-			(at 69.85 54.61 0)
+			(at 71.12 54.61 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9793,7 +9655,7 @@
 			)
 		)
 		(property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal"
-			(at 74.93 48.26 0)
+			(at 76.2 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9804,7 +9666,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 74.93 48.26 0)
+			(at 76.2 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9815,7 +9677,7 @@
 			)
 		)
 		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 74.93 48.26 0)
+			(at 76.2 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9832,7 +9694,7 @@
 			(uuid "5b2ff90f-de41-417f-bf22-75c16a076f0e")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "power_drive1")
 					(unit 1)
@@ -9911,7 +9773,7 @@
 			(uuid "fc7c4afc-ff5c-4799-98f6-fdc4c86547f1")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#PWR021")
 					(unit 1)
@@ -9989,7 +9851,7 @@
 			(uuid "83a190c7-7913-4993-b08e-c29d76ceba23")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#PWR022")
 					(unit 1)
@@ -10068,7 +9930,7 @@
 			(uuid "1e8c0d04-c427-436a-bae0-1d208caaa5eb")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#PWR019")
 					(unit 1)
@@ -10151,7 +10013,7 @@
 			(uuid "4b175c52-c11e-436b-9f1e-2d995ea7a6c3")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "J10")
 					(unit 1)
@@ -10243,7 +10105,7 @@
 			(uuid "78bf499e-cbd3-4e6c-b74c-e83b9b243f62")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "tof-connector_2")
 					(unit 1)
@@ -10325,7 +10187,7 @@
 			(uuid "152ae8ed-e204-4d63-894e-04fb8b4fc8ad")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "U4")
 					(unit 1)
@@ -10403,7 +10265,7 @@
 			(uuid "b84ae70f-3ae6-4cc2-98bb-2e6085b5c934")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#PWR013")
 					(unit 1)
@@ -10482,7 +10344,7 @@
 			(uuid "787b4287-f739-4268-92fb-e34f211c72ea")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#PWR06")
 					(unit 1)
@@ -10560,7 +10422,7 @@
 			(uuid "d165ebc6-e651-4068-ac32-c026ec27e426")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#PWR015")
 					(unit 1)
@@ -10639,7 +10501,7 @@
 			(uuid "9c67e5cd-59c2-4497-83b2-e21af3245f4c")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#PWR024")
 					(unit 1)
@@ -10716,7 +10578,7 @@
 			(uuid "b969d7c6-4bfd-4030-b631-9a60b44978d8")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#FLG04")
 					(unit 1)
@@ -10797,7 +10659,7 @@
 			(uuid "b324fcb2-60ba-47e6-a438-1431709e5d12")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "C7")
 					(unit 1)
@@ -10877,7 +10739,7 @@
 			(uuid "6e8301a1-bf98-4734-8546-8cde7a320498")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "L1")
 					(unit 1)
@@ -10956,7 +10818,7 @@
 			(uuid "fdcf2fb6-fece-47f8-bf53-4eb645fd4012")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#PWR025")
 					(unit 1)
@@ -11048,7 +10910,7 @@
 			(uuid "b5e0028d-8c36-4c0f-81f3-8376bf664baf")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "J9")
 					(unit 1)
@@ -11129,7 +10991,7 @@
 			(uuid "4f0013ed-0be7-4006-b384-0ceae0520a38")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "IN_buck-7.4V1")
 					(unit 1)
@@ -11207,7 +11069,7 @@
 			(uuid "75ac60d5-5840-439e-ae96-7a883e1ca300")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#PWR01")
 					(unit 1)
@@ -11288,7 +11150,7 @@
 			(uuid "78ad2723-0164-4c1f-ae3f-ef072033b77d")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "7.4V1")
 					(unit 1)
@@ -11366,7 +11228,7 @@
 			(uuid "a7fb73ba-edf4-44b8-8d75-e387f147e637")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#FLG05")
 					(unit 1)
@@ -11445,7 +11307,7 @@
 			(uuid "f59196c0-d4f3-4c03-8b97-11883b67ae96")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#FLG01")
 					(unit 1)
@@ -11579,7 +11441,7 @@
 			(uuid "af920288-1605-4e1d-920d-2fb5f2703fed")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "J1")
 					(unit 1)
@@ -11775,7 +11637,7 @@
 			(uuid "46a84f5a-96df-4573-ba85-4193092fb14a")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "U1")
 					(unit 1)
@@ -11877,7 +11739,7 @@
 			(uuid "f9ba78e6-771d-4be3-b2ba-992cfea8b9d2")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "D3")
 					(unit 1)
@@ -11958,7 +11820,7 @@
 			(uuid "e70a3e2d-19b1-41f4-afc9-a3fea14cb95a")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "C2")
 					(unit 1)
@@ -12036,7 +11898,7 @@
 			(uuid "d6e1eb48-f60e-42ad-afd3-d6762320cb60")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#FLG03")
 					(unit 1)
@@ -12117,7 +11979,7 @@
 			(uuid "848c7869-9632-4bc5-a8c7-62a79409f237")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "OUT_buck-6V1")
 					(unit 1)
@@ -12196,7 +12058,7 @@
 			(uuid "a2c7ad42-3067-47c2-a9d5-ca518a22a079")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#FLG010")
 					(unit 1)
@@ -12278,7 +12140,7 @@
 			(uuid "9e8352bb-4baa-45a3-8e6a-7a60f29fcec1")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "C_polarized1")
 					(unit 1)
@@ -12364,7 +12226,7 @@
 			(uuid "ab69540b-5a35-430b-a36a-e67854306a7b")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "IN_motors1")
 					(unit 1)
@@ -12442,7 +12304,7 @@
 			(uuid "7c9d3a18-ede4-4446-a799-e7c7d825e52b")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "#PWR04")
 					(unit 1)
@@ -12523,7 +12385,7 @@
 			(uuid "a06882b0-c51f-4c24-ae45-ffea344d182e")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "C6")
 					(unit 1)
@@ -12606,7 +12468,7 @@
 			(uuid "f309fd3d-43a6-49ae-a472-c852a114613a")
 		)
 		(instances
-			(project "pcb_final"
+			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "J12")
 					(unit 1)
