@@ -1,6 +1,6 @@
-../Core/Src/main.c:66:6:LidarInit	16	static
-../Core/Src/main.c:93:5:main	32	static
-../Core/Src/main.c:167:6:SystemClock_Config	72	static
-../Core/Src/main.c:204:13:MX_I2C1_Init	8	static
-../Core/Src/main.c:238:13:MX_GPIO_Init	32	static
-../Core/Src/main.c:272:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:78:6:LidarInit	24	static
+../Core/Src/main.c:106:5:main	24	static
+../Core/Src/main.c:230:6:SystemClock_Config	72	static
+../Core/Src/main.c:270:13:MX_I2C1_Init	8	static
+../Core/Src/main.c:304:13:MX_GPIO_Init	40	static
+../Core/Src/main.c:339:6:Error_Handler	4	static,ignoring_inline_asm

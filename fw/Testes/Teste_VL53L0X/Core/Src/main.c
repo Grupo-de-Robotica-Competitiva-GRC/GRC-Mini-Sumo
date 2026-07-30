@@ -44,13 +44,21 @@ I2C_HandleTypeDef hi2c1;
 
 /* USER CODE BEGIN PV */
 
-VL53L0X_RangingMeasurementData_t RangingData; //Dados lidos pelo sensor
-VL53L0X_Dev_t  vl53l0x_c;
+VL53L0X_RangingMeasurementData_t RangingData;
+VL53L0X_RangingMeasurementData_t RangingData2;//Dados lidos pelo sensor
+VL53L0X_RangingMeasurementData_t RangingData3;
+VL53L0X_Dev_t vl53l0x_c;
+VL53L0X_Dev_t vl53l0x_c2;
+VL53L0X_Dev_t vl53l0x_c3;
 VL53L0X_DEV Dev = &vl53l0x_c;
+VL53L0X_DEV Dev2 = &vl53l0x_c2;
+VL53L0X_DEV Dev3 = &vl53l0x_c3;
 
 //=================VARIÁVEIS DE DEBUG====================
 uint8_t address; //Endereço do sensor I2C do sensor
 VL53L0X_Error status; //status da leitura I2C (0 é ok)
+VL53L0X_Error status2;
+VL53L0X_Error status3;
 HAL_StatusTypeDef ret; // Verifica a comunicação I2C
 uint8_t test = 0; // Verifica se as conexões de hardware estão ok
 
@@ -67,15 +75,15 @@ static void MX_I2C1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void LidarInit() {
+void LidarInit(VL53L0X_DEV Dev) {
 	uint32_t refSpadCount;
 	uint8_t isApertureSpads;
 	uint8_t VhvSettings;
 	uint8_t PhaseCal;
 
-	VL53L0X_WaitDeviceBooted( Dev );
-	VL53L0X_DataInit( Dev );
-	VL53L0X_StaticInit( Dev );
+	VL53L0X_WaitDeviceBooted(Dev);
+	VL53L0X_DataInit(Dev);
+	VL53L0X_StaticInit(Dev);
 	VL53L0X_PerformRefCalibration(Dev, &VhvSettings, &PhaseCal);
 	VL53L0X_PerformRefSpadManagement(Dev, &refSpadCount, &isApertureSpads);
 	VL53L0X_SetDeviceMode(Dev, VL53L0X_DEVICEMODE_SINGLE_RANGING);
@@ -88,6 +96,7 @@ void LidarInit() {
 	VL53L0X_SetVcselPulsePeriod(Dev, VL53L0X_VCSEL_PERIOD_PRE_RANGE, 18);
 	VL53L0X_SetVcselPulsePeriod(Dev, VL53L0X_VCSEL_PERIOD_FINAL_RANGE, 14);
 }
+
 /* USER CODE END 0 */
 
 /**
@@ -104,7 +113,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-	HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -121,14 +130,55 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  	Dev->I2cHandle = &hi2c1;
-	Dev->I2cDevAddr = 0x52;
+
 
 	HAL_GPIO_WritePin(Lidar_xShutdown_GPIO_Port, Lidar_xShutdown_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
 	HAL_Delay(20);
+//sensor3
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
+		HAL_Delay(20);
+		Dev3->I2cHandle = &hi2c1;
+		Dev3->I2cDevAddr = 0x52;
+
+		VL53L0X_DataInit(Dev3);
+		VL53L0X_SetDeviceAddress(Dev3, 0x64);
+		Dev2->I2cDevAddr = 0x64;
+	//	LidarInit2();
+
+
+		VL53L0X_SetDeviceMode(Dev3, VL53L0X_DEVICEMODE_SINGLE_RANGING);
+		VL53L0X_StaticInit(Dev3);
+		VL53L0X_StartMeasurement(Dev3);
+		LidarInit(Dev3);
+
+	//sensor2
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
+	HAL_Delay(20);
+	Dev2->I2cHandle = &hi2c1;
+	Dev2->I2cDevAddr = 0x52;
+
+	VL53L0X_DataInit(Dev2);
+	VL53L0X_SetDeviceAddress(Dev2, 0x5A);
+	Dev2->I2cDevAddr = 0x5A;
+
+	VL53L0X_SetDeviceMode(Dev2, VL53L0X_DEVICEMODE_SINGLE_RANGING);
+	VL53L0X_StaticInit(Dev2);
+	VL53L0X_StartMeasurement(Dev2);
+	LidarInit(Dev2);
+
+	//sensor 1
 	HAL_GPIO_WritePin(Lidar_xShutdown_GPIO_Port, Lidar_xShutdown_Pin, GPIO_PIN_SET);
 	HAL_Delay(20);
-	LidarInit();
+	Dev->I2cHandle = &hi2c1;
+	Dev->I2cDevAddr = 0x52;
+	VL53L0X_DataInit(Dev);
+	VL53L0X_SetDeviceMode(Dev, VL53L0X_DEVICEMODE_SINGLE_RANGING);
+	VL53L0X_StaticInit(Dev);
+	VL53L0X_StartMeasurement(Dev);
+	LidarInit(Dev);
+
 
 	ret = HAL_I2C_Mem_Read(
 	    &hi2c1,
@@ -144,13 +194,13 @@ int main(void)
 	//VL53L0X_SetDeviceAddress(Dev, 0x31);
 
 	//Laço para procurar o endereço do sensor
-	for(uint8_t addr = 1; addr < 128; addr++)
-	{
-	    if(HAL_I2C_IsDeviceReady(&hi2c1, addr << 1, 1, 10) == HAL_OK)
-	    {
-	        address = addr;
-	    }
-	}
+//	for(uint8_t addr = 1; addr < 128; addr++)
+//	{
+//	    if(HAL_I2C_IsDeviceReady(&hi2c1, addr << 1, 1, 10) == HAL_OK)
+//	    {
+//	        address = addr;
+//	    }
+//	}
 
   /* USER CODE END 2 */
 
@@ -159,6 +209,13 @@ int main(void)
   while (1)
   {
 	  status = VL53L0X_PerformSingleRangingMeasurement(Dev, &RangingData);
+	  HAL_Delay(20);
+	  status2 = VL53L0X_PerformSingleRangingMeasurement(Dev2, &RangingData2);
+	  HAL_Delay(20);
+	  status3 = VL53L0X_PerformSingleRangingMeasurement(Dev3, &RangingData3);
+	  HAL_Delay(20);
+//	  VL53L0X_GetRangingMeasurementData(Dev, &RangingData);
+//	  VL53L0X_GetRangingMeasurementData(Dev2, &RangingData2);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -178,10 +235,13 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -191,12 +251,12 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -249,18 +309,19 @@ static void MX_GPIO_Init(void)
   /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(Lidar_xShutdown_GPIO_Port, Lidar_xShutdown_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, Lidar_xShutdown_Pin|GPIO_PIN_4|GPIO_PIN_5, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : Lidar_xShutdown_Pin */
-  GPIO_InitStruct.Pin = Lidar_xShutdown_Pin;
+  /*Configure GPIO pins : Lidar_xShutdown_Pin PB4 PB5 */
+  GPIO_InitStruct.Pin = Lidar_xShutdown_Pin|GPIO_PIN_4|GPIO_PIN_5;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(Lidar_xShutdown_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
