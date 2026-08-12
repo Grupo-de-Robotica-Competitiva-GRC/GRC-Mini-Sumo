@@ -144,14 +144,14 @@ int main(void)
 
 		VL53L0X_DataInit(Dev3);
 		VL53L0X_SetDeviceAddress(Dev3, 0x64);
-		Dev2->I2cDevAddr = 0x64;
+		Dev3->I2cDevAddr = 0x64;
 	//	LidarInit2();
 
 
 		VL53L0X_SetDeviceMode(Dev3, VL53L0X_DEVICEMODE_SINGLE_RANGING);
 		VL53L0X_StaticInit(Dev3);
-		VL53L0X_StartMeasurement(Dev3);
 		LidarInit(Dev3);
+		VL53L0X_StartMeasurement(Dev3);
 
 	//sensor2
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
@@ -165,8 +165,8 @@ int main(void)
 
 	VL53L0X_SetDeviceMode(Dev2, VL53L0X_DEVICEMODE_SINGLE_RANGING);
 	VL53L0X_StaticInit(Dev2);
-	VL53L0X_StartMeasurement(Dev2);
 	LidarInit(Dev2);
+	VL53L0X_StartMeasurement(Dev2);
 
 	//sensor 1
 	HAL_GPIO_WritePin(Lidar_xShutdown_GPIO_Port, Lidar_xShutdown_Pin, GPIO_PIN_SET);
@@ -176,13 +176,13 @@ int main(void)
 	VL53L0X_DataInit(Dev);
 	VL53L0X_SetDeviceMode(Dev, VL53L0X_DEVICEMODE_SINGLE_RANGING);
 	VL53L0X_StaticInit(Dev);
-	VL53L0X_StartMeasurement(Dev);
 	LidarInit(Dev);
+	VL53L0X_StartMeasurement(Dev);
 
-
+    HAL_Delay(20);
 	ret = HAL_I2C_Mem_Read(
 	    &hi2c1,
-	    0x52,
+	    0x64,
 	    0xC0,
 	    I2C_MEMADD_SIZE_8BIT,
 	    &test,
