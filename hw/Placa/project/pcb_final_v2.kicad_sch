@@ -3072,6 +3072,146 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:R"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+				(at 2.032 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "R_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Interface_Optical:TSOP21xx"
 			(pin_names
 				(offset 1.016)
@@ -6249,10 +6389,28 @@
 		(uuid "283b2999-716a-469b-bd07-bfbe6e0a89d3")
 	)
 	(junction
+		(at 251.46 110.49)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2b8b8d70-e633-47e1-96ae-66a7c7a4e3e4")
+	)
+	(junction
 		(at 43.18 30.48)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "30931783-eee8-4f64-a724-1c9e8f74699f")
+	)
+	(junction
+		(at 241.3 115.57)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "39978abf-db46-4be2-b178-789d7b26ebf5")
+	)
+	(junction
+		(at 241.3 110.49)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4fbbb308-bf55-4f1b-86cf-1ed338052048")
 	)
 	(junction
 		(at 238.76 95.25)
@@ -6295,6 +6453,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "987daa44-3c78-4217-9e6d-a40c49d33adb")
+	)
+	(junction
+		(at 251.46 115.57)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "98c955b7-b56e-41e8-9238-9dc0eb9cf779")
 	)
 	(junction
 		(at 43.18 33.02)
@@ -6634,13 +6798,23 @@
 	)
 	(wire
 		(pts
-			(xy 241.3 100.33) (xy 241.3 96.52)
+			(xy 241.3 116.84) (xy 241.3 115.57)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "142695e3-e94a-41ac-9cbe-585b4678a872")
+	)
+	(wire
+		(pts
+			(xy 240.03 115.57) (xy 241.3 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1426e9eb-7cbc-4084-8cdb-ba02f96ef4e4")
 	)
 	(wire
 		(pts
@@ -6704,6 +6878,26 @@
 	)
 	(wire
 		(pts
+			(xy 251.46 110.49) (xy 251.46 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "26115292-721c-4e09-be10-4cffc6552577")
+	)
+	(wire
+		(pts
+			(xy 247.65 115.57) (xy 251.46 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2cbf3160-fb44-477d-932d-2ca97da03723")
+	)
+	(wire
+		(pts
 			(xy 90.17 95.25) (xy 115.57 95.25)
 		)
 		(stroke
@@ -6734,6 +6928,16 @@
 	)
 	(wire
 		(pts
+			(xy 241.3 106.68) (xy 241.3 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "33fb9695-498c-4c0b-8077-bf859116cef1")
+	)
+	(wire
+		(pts
 			(xy 54.61 25.4) (xy 43.18 25.4)
 		)
 		(stroke
@@ -6741,6 +6945,16 @@
 			(type default)
 		)
 		(uuid "34d4ca3e-5787-4bd9-a373-d6b39277d9d9")
+	)
+	(wire
+		(pts
+			(xy 246.38 99.06) (xy 246.38 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "39465aa1-7418-48b1-b0d4-cbd7c9bb3cce")
 	)
 	(wire
 		(pts
@@ -6774,6 +6988,16 @@
 	)
 	(wire
 		(pts
+			(xy 245.11 110.49) (xy 241.3 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "56286ae7-872e-46a8-a3cd-533cd3db2425")
+	)
+	(wire
+		(pts
 			(xy 88.9 93.98) (xy 90.17 93.98)
 		)
 		(stroke
@@ -6791,6 +7015,16 @@
 			(type default)
 		)
 		(uuid "5bdd28ee-07be-49c3-a9a9-5332fb8345d3")
+	)
+	(wire
+		(pts
+			(xy 251.46 115.57) (xy 251.46 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "625b5417-274b-45ef-b917-16c617e61f2b")
 	)
 	(wire
 		(pts
@@ -6851,6 +7085,16 @@
 			(type default)
 		)
 		(uuid "85cac8ea-1359-4874-be66-162162f76230")
+	)
+	(wire
+		(pts
+			(xy 241.3 110.49) (xy 241.3 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8a2b2dfe-8283-41b7-a6be-4f99b68a9955")
 	)
 	(wire
 		(pts
@@ -7104,6 +7348,16 @@
 	)
 	(wire
 		(pts
+			(xy 241.3 96.52) (xy 241.3 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e6764ce3-9dc1-4c6e-9ec5-42b5c7179469")
+	)
+	(wire
+		(pts
 			(xy 87.63 93.98) (xy 88.9 93.98)
 		)
 		(stroke
@@ -7131,6 +7385,16 @@
 			(type default)
 		)
 		(uuid "ebfab99c-4bb2-4fe2-84a9-7c3eddfb5c3c")
+	)
+	(wire
+		(pts
+			(xy 252.73 110.49) (xy 251.46 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ee12a149-e212-4d02-aa53-9b107307d0ad")
 	)
 	(wire
 		(pts
@@ -7380,7 +7644,7 @@
 	)
 	(global_label "D4"
 		(shape input)
-		(at 246.38 100.33 90)
+		(at 246.38 99.06 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7390,7 +7654,7 @@
 		)
 		(uuid "3f3856b3-6009-49a2-aaf5-1ef9149c404b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 246.38 94.8653 90)
+			(at 246.38 93.5953 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8634,6 +8898,87 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 241.3 102.87 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "11679bab-8dda-498f-9966-6de4c788b09c")
+		(property "Reference" "R1"
+			(at 237.49 101.346 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100"
+			(at 238.506 104.14 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 239.522 102.87 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 102.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 241.3 102.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "20aa667f-6bfc-47fc-b1bf-e706dda44be2")
+		)
+		(pin "2"
+			(uuid "7d593323-19ef-4f58-be9e-90090f993d4f")
+		)
+		(instances
+			(project "pcb_final_v2"
+				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
+					(reference "R1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 162.56 110.49 0)
 		(unit 1)
@@ -8666,7 +9011,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 163.5252 114.3 0)
 			(hide yes)
 			(show_name no)
@@ -9452,8 +9797,88 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C_Polarized")
+		(at 243.84 115.57 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "3c996ac5-aa67-45e4-ae66-ef999c1b6f59")
+		(property "Reference" "C1"
+			(at 242.951 107.95 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "4,7uF"
+			(at 242.951 110.49 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+			(at 247.65 114.6048 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 243.84 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Polarized capacitor"
+			(at 243.84 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8032279a-3815-4aea-800e-c187c888badd")
+		)
+		(pin "2"
+			(uuid "52629e36-4919-465e-b4ef-2dc10ad00c6c")
+		)
+		(instances
+			(project "pcb_final_v2"
+				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
+					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Interface_Optical:TSOP21xx")
-		(at 246.38 110.49 90)
+		(at 246.38 127 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9464,7 +9889,7 @@
 		(fields_autoplaced yes)
 		(uuid "3e74fa3e-f2c4-4b39-97d1-535254068ccd")
 		(property "Reference" "U2"
-			(at 254 110.9548 90)
+			(at 254 127.4648 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9475,7 +9900,7 @@
 			)
 		)
 		(property "Value" "Receptor IR"
-			(at 254 113.4948 90)
+			(at 254 130.0048 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9486,7 +9911,7 @@
 			)
 		)
 		(property "Footprint" "OptoDevice:Vishay_MOLD-3Pin"
-			(at 255.905 111.76 0)
+			(at 255.905 128.27 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9497,7 +9922,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.vishay.com/docs/82460/tsop45.pdf"
-			(at 238.76 93.98 0)
+			(at 238.76 110.49 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9508,7 +9933,7 @@
 			)
 		)
 		(property "Description" "IR Receiver Modules for Remote Control Systems"
-			(at 246.38 110.49 0)
+			(at 246.38 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9570,7 +9995,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Button_Switch_THT:SW_DIP_SPSTx01_Slide_6.7x4.1mm_W7.62mm_P2.54mm_LowProfile"
+		(property "Footprint" "Button_Switch_THT:SW_CK_JS202011CQN_DPDT_Straight"
 			(at 49.53 101.6 0)
 			(hide yes)
 			(show_name no)
@@ -10283,7 +10708,6 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "844126b8-7445-4b5a-8b0b-cce907ca29cf")
 		(property "Reference" "#PWR06"
 			(at 236.22 95.25 0)
@@ -10297,14 +10721,14 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 243.84 95.2499 90)
+			(at 240.284 93.472 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right bottom)
 			)
 		)
 		(property "Footprint" ""
@@ -10749,7 +11173,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 251.46 100.33 90)
+		(at 251.46 110.49 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10757,10 +11181,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "913e9ce4-7a34-4148-9f83-8d9cca8b02bf")
 		(property "Reference" "#PWR025"
-			(at 257.81 100.33 0)
+			(at 257.81 110.49 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10771,7 +11194,7 @@
 			)
 		)
 		(property "Value" "GNDS"
-			(at 255.27 100.3299 90)
+			(at 255.27 110.4899 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10782,7 +11205,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 251.46 100.33 0)
+			(at 251.46 110.49 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10793,7 +11216,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 251.46 100.33 0)
+			(at 251.46 110.49 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10804,7 +11227,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 251.46 100.33 0)
+			(at 251.46 110.49 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11780,7 +12203,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 141.9352 114.3 0)
 			(hide yes)
 			(show_name no)
@@ -12471,6 +12894,88 @@
 			(project "pcb_final_v2"
 				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
 					(reference "J12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 248.92 110.49 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "fb93c407-67a9-49b9-9905-182894bca4a4")
+		(property "Reference" "C4"
+			(at 247.6499 106.68 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "100nF"
+			(at 250.1899 106.68 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+			(at 245.11 111.4552 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 248.92 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 248.92 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "420d3c87-59e3-4a0e-baf5-eb07b740bc15")
+		)
+		(pin "2"
+			(uuid "b3a26b9c-1c65-45a7-bafd-9598aa8d8328")
+		)
+		(instances
+			(project "pcb_final_v2"
+				(path "/bcd4dc03-325b-48e6-b903-a789c0b92262"
+					(reference "C4")
 					(unit 1)
 				)
 			)
