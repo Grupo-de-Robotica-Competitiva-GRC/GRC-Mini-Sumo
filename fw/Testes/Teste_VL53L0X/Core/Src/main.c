@@ -88,6 +88,13 @@ uint8_t test = 0; 			// Verifica se as conexões de hardware estão ok
 
 uint8_t bus_scan[128];
 
+LidarSensor_t *recovering_now = NULL;  // Só um sensor em recovering por vez
+
+
+uint16_t distancia1;
+uint16_t distancia2;
+uint16_t distancia3;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -115,7 +122,7 @@ void LidarInit(VL53L0X_DEV Dev) {
 
 	VL53L0X_SetLimitCheckEnable(Dev, VL53L0X_CHECKENABLE_SIGMA_FINAL_RANGE, 1);
 	VL53L0X_SetLimitCheckEnable(Dev, VL53L0X_CHECKENABLE_SIGNAL_RATE_FINAL_RANGE, 1);
-	VL53L0X_SetLimitCheckValue(Dev, VL53L0X_CHECKENABLE_SIGNAL_RATE_FINAL_RANGE, (FixPoint1616_t)(0.1*65536));
+	VL53L0X_SetLimitCheckValue(Dev, VL53L0X_CHECKENABLE_SIGNAL_RATE_FINAL_RANGE, (FixPoint1616_t)(0.25*65536));
 	VL53L0X_SetLimitCheckValue(Dev, VL53L0X_CHECKENABLE_SIGMA_FINAL_RANGE, (FixPoint1616_t)(60*65536));
 	VL53L0X_SetMeasurementTimingBudgetMicroSeconds(Dev, 33000);
 	VL53L0X_SetVcselPulsePeriod(Dev, VL53L0X_VCSEL_PERIOD_PRE_RANGE, 18);
@@ -177,8 +184,9 @@ static void LidarUpdate(LidarSensor_t *s)
 
 				s->state = LIDAR_OK;
 				s->fail_count = 0;
+				recovering_now = NULL; //Libera para outro sensor tentar se reconectar
 			}
-			I2C_ScanBus();
+
 			// se não respondeu, o próximo LidarUpdate tenta de novo do passo 0
 			s->recover_step = 0;
 			break;
@@ -187,9 +195,12 @@ static void LidarUpdate(LidarSensor_t *s)
 	}
 
 	case LIDAR_FAULT:
-		s->state = LIDAR_RECOVERING;
-		s->recover_step = 0;
-		s->recover_tick = HAL_GetTick();
+		if(recovering_now == NULL){
+			recovering_now = s;
+			s->state = LIDAR_RECOVERING;
+			s->recover_step = 0;
+			s->recover_tick = HAL_GetTick();
+		}
 		break;
 
 	case LIDAR_OK:
@@ -350,6 +361,16 @@ int main(void)
 	  }
 	  LidarUpdate(&sensors[2]);
 
+
+	  if (status == VL53L0X_ERROR_NONE && RangingData.RangeStatus == 0) {
+	      distancia1 = RangingData.RangeMilliMeter;
+	  }
+	  if (status2 == VL53L0X_ERROR_NONE && RangingData2.RangeStatus == 0) {
+		  distancia2 = RangingData2.RangeMilliMeter;
+	  }
+	  if (status3 == VL53L0X_ERROR_NONE && RangingData3.RangeStatus == 0) {
+		  distancia3 = RangingData3.RangeMilliMeter;
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
