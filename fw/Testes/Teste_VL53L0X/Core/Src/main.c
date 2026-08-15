@@ -41,6 +41,8 @@ typedef struct {
     uint8_t fail_count;
     uint32_t recover_tick;
     uint8_t recover_step;
+    uint8_t recover_attempts;
+    uint8_t in_queue;
 } LidarSensor_t;
 /* USER CODE END PTD */
 /* USER CODE END PTD */
@@ -62,6 +64,11 @@ I2C_HandleTypeDef hi2c1;
 
 #define LIDAR_FAIL_THRESHOLD   5     // Numero de falhas seguidas antes de disparar recovery
 #define LIDAR_RECOVER_DELAY_MS 20
+
+LidarSensor_t *recovery_queue[3];
+uint8_t queue_head = 0;
+uint8_t queue_tail = 0;
+uint8_t queue_count = 0;
 
 LidarSensor_t sensors[3];
 
@@ -88,13 +95,10 @@ uint8_t test = 0; 			// Verifica se as conexões de hardware estão ok
 
 uint8_t bus_scan[128];
 
-LidarSensor_t *recovering_now = NULL;  // Só um sensor em recovering por vez
-
 
 uint16_t distancia1;
 uint16_t distancia2;
 uint16_t distancia3;
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -143,70 +147,108 @@ static uint8_t LidarIsAlive(uint8_t i2c_addr_shifted)
 	return (HAL_I2C_IsDeviceReady(&hi2c1, i2c_addr_shifted, 1, 5) == HAL_OK);
 }
 
+//----------------- FILA DE RECONEXAO ---------------------------
+static void QueuePush(LidarSensor_t *s)
+{
+    if (queue_count >= 3) return; // já na fila, nunca deveria estourar
+    recovery_queue[queue_tail] = s;
+    queue_tail = (queue_tail + 1) % 3;
+    queue_count++;
+}
 
+static LidarSensor_t* QueuePeek(void)
+{
+    if (queue_count == 0) return NULL;
+    return recovery_queue[queue_head];
+}
+
+static void QueuePop(void)
+{
+    if (queue_count == 0) return;
+    queue_head = (queue_head + 1) % 3;
+    queue_count--;
+}
+
+static void LidarRecoveryStep(LidarSensor_t *s)
+{
+	uint32_t now = HAL_GetTick();
+	if (now - s->recover_tick < LIDAR_RECOVER_DELAY_MS) {
+		return;
+	}
+	s->recover_tick = now;
+
+	switch (s->recover_step)
+	{
+	case 0: // desliga o sensor via XSHUT
+		HAL_GPIO_WritePin(s->xshut_port, s->xshut_pin, GPIO_PIN_RESET);
+		s->recover_step = 1;
+		break;
+
+	case 1: // liga de novo
+		HAL_GPIO_WritePin(s->xshut_port, s->xshut_pin, GPIO_PIN_SET);
+		s->recover_step = 2;
+		break;
+
+	case 2: // reatribui endereço e reinicializa driver
+		s->dev->I2cDevAddr = 0x52;
+		VL53L0X_WaitDeviceBooted(s->dev);
+		if (LidarIsAlive(0x52)) {
+			VL53L0X_DataInit(s->dev);
+			if (s->target_addr != 0x52) {
+				VL53L0X_SetDeviceAddress(s->dev, s->target_addr);
+				s->dev->I2cDevAddr = s->target_addr;
+			}
+			VL53L0X_SetDeviceMode(s->dev, VL53L0X_DEVICEMODE_SINGLE_RANGING);
+			VL53L0X_StaticInit(s->dev);
+			LidarInit(s->dev);
+			VL53L0X_StartMeasurement(s->dev);
+
+			s->state = LIDAR_OK;
+			s->fail_count = 0;
+			s->recover_attempts = 0;
+		} else {
+			s->recover_attempts++;
+		}
+		s->recover_step = 0;
+		break;
+	}
+}
+
+//detecta se o sensor está conectado
 static void LidarUpdate(LidarSensor_t *s)
 {
-	switch (s->state)
-	{
-	case LIDAR_RECOVERING:
-	{
-		uint32_t now = HAL_GetTick();
-		if (now - s->recover_tick < LIDAR_RECOVER_DELAY_MS) {
-			return; 	// ainda esperando o passo atual, não bloqueia nada
-		}
-		s->recover_tick = now;
-
-		switch (s->recover_step)
-		{
-		case 0: // desliga o sensor via XSHUT
-			HAL_GPIO_WritePin(s->xshut_port, s->xshut_pin, GPIO_PIN_RESET);
-			s->recover_step = 1;
-			break;
-
-		case 1: // liga de novo
-			HAL_GPIO_WritePin(s->xshut_port, s->xshut_pin, GPIO_PIN_SET);
-			s->recover_step = 2;
-			break;
-
-		case 2: // reatribui endereço e reinicializa driver
-			s->dev->I2cDevAddr = 0x52;
-			VL53L0X_WaitDeviceBooted(s->dev);
-			if (LidarIsAlive(0x52)) {
-				VL53L0X_DataInit(s->dev);
-				if (s->target_addr != 0x52) {
-					VL53L0X_SetDeviceAddress(s->dev, s->target_addr);
-					s->dev->I2cDevAddr = s->target_addr;
-				}
-				VL53L0X_SetDeviceMode(s->dev, VL53L0X_DEVICEMODE_SINGLE_RANGING);
-				VL53L0X_StaticInit(s->dev);
-				LidarInit(s->dev);
-				VL53L0X_StartMeasurement(s->dev);
-
-				s->state = LIDAR_OK;
-				s->fail_count = 0;
-				recovering_now = NULL; //Libera para outro sensor tentar se reconectar
-			}
-
-			// se não respondeu, o próximo LidarUpdate tenta de novo do passo 0
-			s->recover_step = 0;
-			break;
-		}
-		break;
+	if (s->state == LIDAR_FAULT && !s->in_queue) {
+		HAL_GPIO_WritePin(s->xshut_port, s->xshut_pin, GPIO_PIN_RESET); // isola do barramento até ser a vez dele
+		s->in_queue = 1;
+		QueuePush(s);
 	}
+}
 
-	case LIDAR_FAULT:
-		if(recovering_now == NULL){
-			recovering_now = s;
-			s->state = LIDAR_RECOVERING;
-			s->recover_step = 0;
-			s->recover_tick = HAL_GetTick();
-		}
-		break;
+static void RecoveryDispatcher(void)
+{
+    LidarSensor_t *s = QueuePeek();
+    if (s == NULL) return;
 
-	case LIDAR_OK:
-	default:
-		break;
-	}
+    if (s->state != LIDAR_RECOVERING) {
+        s->state = LIDAR_RECOVERING;
+        s->recover_step = 0;
+        s->recover_attempts = 0;
+        s->recover_tick = HAL_GetTick();
+    }
+
+    LidarRecoveryStep(s);
+
+    if (s->state == LIDAR_OK) {
+        s->in_queue = 0;
+        QueuePop();
+    } else if (s->recover_attempts >= 10) {
+        HAL_GPIO_WritePin(s->xshut_port, s->xshut_pin, GPIO_PIN_RESET); // isola de novo enquanto espera a próxima vez
+        s->state = LIDAR_FAULT;
+        s->recover_attempts = 0;
+        QueuePop();
+        QueuePush(s);
+        // in_queue continua 1, o sensor nunca sai de fato da fila
+    }
 }
 
 // Chame isso depois de cada medição, passando o status retornado
@@ -221,6 +263,7 @@ static void LidarReportStatus(LidarSensor_t *s, VL53L0X_Error status)
 		s->fail_count = 0;
 	}
 }
+
 
 /* USER CODE END 0 */
 
@@ -325,17 +368,6 @@ int main(void)
 	sensors[2] = (LidarSensor_t){ Dev3, GPIOB, GPIO_PIN_5, 0x64, LIDAR_OK, 0, 0, 0 };
 
 
-	//VL53L0X_SetDeviceAddress(Dev, 0x31);
-
-	//Laço para procurar o endereço do sensor
-	//	for(uint8_t addr = 1; addr < 128; addr++)
-	//	{
-	//	    if(HAL_I2C_IsDeviceReady(&hi2c1, addr << 1, 1, 10) == HAL_OK)
-	//	    {
-	//	        address = addr;
-	//	    }
-	//	}
-
 
   /* USER CODE END 2 */
 
@@ -361,9 +393,10 @@ int main(void)
 	  }
 	  LidarUpdate(&sensors[2]);
 
+	  RecoveryDispatcher();   // <-- adicionado, processa só o da frente da fila
 
 	  if (status == VL53L0X_ERROR_NONE && RangingData.RangeStatus == 0) {
-	      distancia1 = RangingData.RangeMilliMeter;
+		  distancia1 = RangingData.RangeMilliMeter;
 	  }
 	  if (status2 == VL53L0X_ERROR_NONE && RangingData2.RangeStatus == 0) {
 		  distancia2 = RangingData2.RangeMilliMeter;
@@ -371,6 +404,7 @@ int main(void)
 	  if (status3 == VL53L0X_ERROR_NONE && RangingData3.RangeStatus == 0) {
 		  distancia3 = RangingData3.RangeMilliMeter;
 	  }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
