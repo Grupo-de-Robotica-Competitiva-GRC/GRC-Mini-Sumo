@@ -1,0 +1,4 @@
+../Core/Src/NEC_Decode.c:17:6:NEC_TIM_IC_CaptureCallback	32	static
+../Core/Src/NEC_Decode.c:78:11:NEC_Init	16	static
+../Core/Src/NEC_Decode.c:94:6:NEC_DeInit	16	static
+../Core/Src/NEC_Decode.c:98:6:NEC_Read	16	static

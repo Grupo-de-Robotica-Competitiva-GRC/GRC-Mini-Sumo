@@ -60,8 +60,8 @@ all: main-build
 main-build: teste_senso_borda.elf secondary-outputs
 
 # Tool invocations
-teste_senso_borda.elf teste_senso_borda.map: $(OBJS) $(USER_OBJS) /home/laio/Documents/GRC/GRC-Mini-Sumo/fw/Testes/teste_senso_borda/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "teste_senso_borda.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/laio/Documents/GRC/GRC-Mini-Sumo/fw/Testes/teste_senso_borda/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="teste_senso_borda.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+teste_senso_borda.elf teste_senso_borda.map: $(OBJS) $(USER_OBJS) /home/laio/Documents/grc/GRC-Mini-Sumo/fw/Testes/teste_senso_borda/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "teste_senso_borda.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/laio/Documents/grc/GRC-Mini-Sumo/fw/Testes/teste_senso_borda/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="teste_senso_borda.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

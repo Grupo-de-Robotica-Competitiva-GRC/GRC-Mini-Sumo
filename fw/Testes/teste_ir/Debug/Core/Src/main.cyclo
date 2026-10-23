@@ -1,0 +1,12 @@
+../Core/Src/main.c:67:6:HAL_TIM_IC_CaptureCallback	1
+../Core/Src/main.c:71:6:NecDecodeCallback	1
+../Core/Src/main.c:79:6:NecErrorCallback	1
+../Core/Src/main.c:83:6:NecRepeatCallback	1
+../Core/Src/main.c:89:6:Nec_IC_Start	1
+../Core/Src/main.c:93:6:Nec_IC_Stop	1
+../Core/Src/main.c:102:5:main	2
+../Core/Src/main.c:166:6:SystemClock_Config	3
+../Core/Src/main.c:206:13:MX_TIM1_Init	7
+../Core/Src/main.c:272:13:MX_DMA_Init	1
+../Core/Src/main.c:290:13:MX_GPIO_Init	1
+../Core/Src/main.c:325:6:Error_Handler	1
